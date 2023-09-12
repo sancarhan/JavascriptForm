@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-image: url(Resim.jpg);
+        }
+        div{
+            width: 300px;
+            height: 300px;
+            margin: auto;
+            margin-top: 300px;
+            background-color: rgb(149, 149, 223);
+            border: 1px solid white;
+            border-radius: 20px;
+        }
+         label,input{
+            display: block;
+            margin: auto;
+            text-align: center;
+            width: 200px;
+        }
+        label{
+            margin-top: 15px;
+        }
+        button{
+            display: block;
+            margin: auto;
+            padding: 5px 10px;
+            margin-top: 15px;
+            width: 100px;
+        }
+        ::placeholder{
+            background-color: red;
+            color: white;
+            opacity: 0.6;
+        }
+        
+    </style>
+</head>
+<body>
+    <div>
+     <form>
+        <label>Kullanıcı Adı</label>
+        <input type="text" id="isim">
+        <label>E-Posta Adresi</label>
+        <input type="text" id="mail">
+        <label>Parola</label>
+        <input type="password" id="sifre">
+        <label>Parola Tekrarı</label>
+        <input type="password" id="sifre2">
+        <button type="button" id="buton">Gönder</button>
+      </form>
+    </div>
+
+    <script src="jquery.js"></script>
+
+    <script>
+        let isim ="Neos";
+        let mail ="birisi@hotmail.com";
+        let sifre ="123456";
+        $("#buton").click(function(){
+            if($("#isim").val()==""){
+                $("#isim").attr("placeholder","Kullanıcı Adı Boş Bırakılmaz!");
+            }
+            if($("#mail").val()==""){
+                $("#mail").attr("placeholder","E-Posta Boş Bırakılmaz!");
+            }
+            if($("#sifre").val()==""){
+                $("#sifre").attr("placeholder","Parola Boş Bırakılmaz!");
+            }
+            if($("#sifre2").val()==""){
+                $("#sifre2").attr("placeholder","Parola Boş Bırakılmaz!");
+            }
+
+            function isEmail(email){
+                var regex = /^[a-zA-Z0-9._-]+@([a-zA-Z0-9.-]+.)+([.])+[a-zA-Z0-9.-]{2,4}$/;
+                return regex.test(email);
+            }
+            if($("#mail").val()!=""){
+                if(isEmail($("#mail").val())==false){
+                    alert("Hatalı mail girdiniz");
+                    $("#mail").val("");
+                }
+
+
+            }
+            if($("#sifre").val()!="" && $("#sifre2").val()!=""){
+                if($("#sifre").val()!=$("#sifre2").val()){
+                    alert("Şifreler uyumsuz")
+                    $("#sifre2").val("");
+                    $("#sifre").val("");
+                }
+            }
+             if($("#isim").val()==isim && $("#mail").val()==mail && $("#sifre").val()==sifre){
+                alert("Giriş Başarılı");
+            }
+             if($("#sifre").val()==$("#sifre2").val()){
+                if($("#isim").val()==isim && $("#mail").val()==mail && $("#sifre").val()!=sifre){
+                     alert("Parola hatalı");
+                 }
+             }
+        })
+    </script>
+</body>
+</html>
